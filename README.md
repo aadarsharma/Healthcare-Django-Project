@@ -1,119 +1,198 @@
-Healthcare Django Project
+# 🏥 Healthcare Management System
 
-A healthcare management system built with Django + PostgreSQL.
-This project allows:
+A comprehensive **Healthcare Management System** built with **Django + PostgreSQL** that enables seamless management of doctors and patients. This project provides secure authentication, CRUD operations for healthcare data, and RESTful APIs for easy integration.
 
-User registration & login.
+## 🚀 Features
 
-Doctors & patients management.
+- 🔐 **User Authentication** – Secure register & login functionality (JWT/Django Auth)
+- 👩‍⚕️ **Doctor Management** – Complete CRUD operations for doctor profiles
+- 🧑‍🤝‍🧑 **Patient Management** – Comprehensive patient data management
+- 📌 **Patient-Doctor Assignment** – Seamless linking of patients with doctors
+- 🗄️ **PostgreSQL Integration** – Robust and reliable data storage
+- 🌐 **REST API Endpoints** – Full API support for frontend or third-party integration
+- 🔒 **Secure Data Handling** – Protected healthcare information management
 
-Assigning patients to doctors.
+## ⚙️ Tech Stack
 
-Secure data storage in PostgreSQL.
+| Component | Technology |
+|-----------|------------|
+| **Backend** | Django, Django REST Framework |
+| **Database** | PostgreSQL |
+| **Authentication** | JWT / Django Authentication |
+| **Environment** | Python Virtual Environment |
+| **Configuration** | Environment Variables (.env) |
 
-🚀 Features
+## 🛠️ Installation & Setup
 
-✅ User Authentication (Register/Login)
-✅ CRUD for Doctors & Patients
-✅ Assign Patients to Doctors
-✅ PostgreSQL Database Integration
-✅ Django REST Framework APIs
+### Prerequisites
+- Python 3.8+ installed
+- PostgreSQL installed and running
+- Git installed
 
-⚙️ Tech Stack
+### 1. Clone the Repository
 
-Backend: Django, Django REST Framework
-
-Database: PostgreSQL
-
-Authentication: JWT/Django Auth
-
-Environment Management: .env file
-
-🛠️ Setup Instructions
-1. Clone Repository
+```bash
 git clone https://github.com/aadarsharma/Healthcare-Django-Project.git
 cd Healthcare-Django-Project
+```
 
-2. Create & Activate Virtual Environment
+### 2. Create Virtual Environment
+
+**Windows:**
+```bash
 python -m venv venv
-venv\Scripts\activate     # On Windows
-source venv/bin/activate  # On Mac/Linux
+venv\Scripts\activate
+```
 
-3. Install Dependencies
+**macOS/Linux:**
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-4. Setup PostgreSQL Database
-Step 1: Install PostgreSQL
+### 4. Database Configuration
 
-Download PostgreSQL
- and install.
+#### Step 1: Create PostgreSQL Database
 
-During installation, set a password for the postgres user (remember this for .env).
+Open PostgreSQL command line or pgAdmin and run:
 
-Step 2: Create Database
-
-Open psql shell or use pgAdmin:
-
+```sql
 CREATE DATABASE healthcare_db;
+```
 
-Step 3: Update .env file
+#### Step 2: Configure Environment Variables
 
-Create a .env file in your project root:
+Create a `.env` file in your project root directory:
 
+```env
+# Database Configuration
 DB_USER=postgres
-DB_PASSWORD=your_password_here
+DB_PASSWORD=your_postgresql_password
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=healthcare_db
-SECRET_KEY=your_secret_key_here
-DEBUG=True
 
-5. Run Migrations
+# Django Configuration
+SECRET_KEY=your_django_secret_key_here
+DEBUG=True
+```
+
+> **Note:** Replace `your_postgresql_password` with your actual PostgreSQL password and generate a secure Django secret key.
+
+### 5. Database Migration
+
+```bash
 python manage.py makemigrations
 python manage.py migrate
+```
 
-6. Create Superuser
+### 6. Create Admin User
+
+```bash
 python manage.py createsuperuser
+```
 
-7. Run Server
+Follow the prompts to create your admin account.
+
+### 7. Start the Development Server
+
+```bash
 python manage.py runserver
+```
 
+🎉 **Success!** Your application is now running at: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
-Now visit 👉 http://127.0.0.1:8000/admin/
+**Admin Panel:** [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
 
-📌 API Endpoints
-Doctors
+## 📚 API Documentation
 
-GET /api/doctors/ → Retrieve all doctors
+### 🔗 Base URL
+```
+http://127.0.0.1:8000/api/
+```
 
-GET /api/doctors/<id>/ → Get details of a specific doctor
+### 👩‍⚕️ Doctor Endpoints
 
-POST /api/doctors/ → Create doctor
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/doctors/` | Retrieve all doctors |
+| `GET` | `/api/doctors/<id>/` | Retrieve specific doctor |
+| `POST` | `/api/doctors/` | Create new doctor |
+| `PUT` | `/api/doctors/<id>/` | Update doctor details |
+| `DELETE` | `/api/doctors/<id>/` | Delete doctor |
 
-PUT /api/doctors/<id>/ → Update doctor details
+### 🧑‍🤝‍🧑 Patient Endpoints
 
-DELETE /api/doctors/<id>/ → Delete doctor record
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/patients/` | Retrieve all patients |
+| `GET` | `/api/patients/<id>/` | Retrieve specific patient |
+| `POST` | `/api/patients/` | Create new patient |
+| `PUT` | `/api/patients/<id>/` | Update patient details |
+| `DELETE` | `/api/patients/<id>/` | Delete patient |
 
-Patients
+### 📌 Assignment Endpoint
 
-GET /api/patients/ → Retrieve all patients
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/assign/` | Assign patient to doctor |
 
-POST /api/patients/ → Create patient
+## 📋 Usage Examples
 
-PUT /api/patients/<id>/ → Update patient details
+### Creating a Doctor (POST Request)
 
-DELETE /api/patients/<id>/ → Delete patient record
+```json
+{
+    "name": "Dr. John Smith",
+    "specialization": "Cardiology",
+    "email": "dr.smith@hospital.com",
+    "phone": "+1-555-0123"
+}
+```
 
-Assign Patient to Doctor
+### Creating a Patient (POST Request)
 
-POST /api/assign/ → Assign patient to doctor
+```json
+{
+    "name": "Jane Doe",
+    "age": 28,
+    "gender": "Female",
+    "phone": "+1-555-0456",
+    "address": "123 Main St, City, State"
+}
+```
 
-✅ Expected Outcome
+## ✅ Expected Outcomes
 
-Users can register & log in.
+After successful setup, your Healthcare Management System will provide:
 
-Authenticated users can add/manage patient & doctor records.
+- ✅ **User Registration & Authentication** – Secure login system
+- ✅ **Doctor Management** – Full CRUD operations for medical staff
+- ✅ **Patient Management** – Comprehensive patient record handling
+- ✅ **Assignment System** – Link patients with appropriate doctors
+- ✅ **Data Security** – Protected storage in PostgreSQL database
+- ✅ **API Integration** – RESTful endpoints for external applications
 
-Patients can be assigned to doctors.
+## 🤝 Contributing
 
-Data is securely stored in PostgreSQL.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Aadarsh Sharma**
+- GitHub: [@aadarsharma](https://github.com/aadarsharma)
+- Project Link: [Healthcare-Django-Project](https://github.com/aadarsharma/Healthcare-Django-Project)
