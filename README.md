@@ -31,7 +31,7 @@ Environment Management: .env file
 
 🛠️ Setup Instructions
 1. Clone Repository
-[git clone https://github.com/sanikakharade/Healthcare-Django-Project.git](https://github.com/aadarsharma/Healthcare-Django-Project.git)
+git clone https://github.com/aadarsharma/Healthcare-Django-Project.git
 cd Healthcare-Django-Project
 
 2. Create & Activate Virtual Environment
